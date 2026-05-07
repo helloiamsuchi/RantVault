@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BURN BOOK - Access Restricted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,700;0,800;1,800&family=Spline+Sans:wght@400;500&family=Space+Grotesk:wght@700&family=Shadows+Into+Light:wght@400&family=Dawning+of+a+New+Day&family=Homemade+Apple&family=Libre+Baskerville:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            background-color: #131313;
+            color: #e4e2e1;
+            font-family: 'Spline Sans', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            font-feature-settings: 'liga';
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+
+        /* Color Variables */
+        :root {
+            --primary: #ffb0d0;
+            --primary-container: #ff69b4;
+            --secondary: #ffb0ca;
+            --secondary-container: #ff479c;
+            --secondary-fixed: #ffd9e3;
+            --tertiary: #e9c400;
+            --tertiary-fixed: #ffe16d;
+            --tertiary-container: #bb9d00;
+            --background: #131313;
+            --surface: #131313;
+            --surface-container: #1f2020;
+            --surface-container-lowest: #0e0e0e;
+            --surface-container-high: #2a2a2a;
+            --on-surface: #e4e2e1;
+            --on-background: #e4e2e1;
+            --on-surface-variant: #dcbfc9;
+            --outline: #a48a93;
+            --outline-variant: #564149;
+            --error: #ffb4ab;
+            --error-container: #93000a;
+        }
+
+        /* Font Families */
+        .handwritten {
+            font-family: 'Shadows Into Light', cursive;
+        }
+
+        .scribbled {
+            font-family: 'Homemade Apple', cursive;
+        }
+
+        .diary-text {
+            font-family: 'Dawning of a New Day', cursive;
+        }
+
+        .headline-xl {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+
+        .headline-md {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .body-lg {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .body-md {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .label-sm {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* Animations */
+        @keyframes sparkle-burst {
+            0% {
+                opacity: 1;
+                transform: scale(0.3) rotate(0deg);
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.8) rotate(180deg);
+                filter: brightness(0.5);
+            }
+        }
+
+        @keyframes lock-open {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px #ffb0d0);
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 30px #ffb0d0);
+            }
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0px #ffb0d0);
+            }
+        }
+
+        @keyframes glitch-tear {
+            0% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                opacity: 1;
+            }
+            25% {
+                clip-path: polygon(0 5%, 100% 2%, 100% 100%, 0 95%);
+            }
+            50% {
+                clip-path: polygon(0 15%, 100% 8%, 100% 92%, 0 98%);
+            }
+            75% {
+                clip-path: polygon(0 25%, 100% 18%, 100% 82%, 0 100%);
+            }
+            100% {
+                clip-path: polygon(0 45%, 100% 40%, 100% 55%, 0 100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes screen-glitch {
+            0%, 100% {
+                transform: translateX(0);
+                background-color: rgba(255, 20, 147, 0.1);
+            }
+            10% {
+                transform: translateX(-4px);
+                background-color: rgba(255, 20, 147, 0.3);
+            }
+            20% {
+                transform: translateX(4px);
+                background-color: rgba(255, 20, 147, 0.2);
+            }
+            30% {
+                transform: translateX(-3px);
+                background-color: rgba(255, 20, 147, 0.4);
+            }
+            40% {
+                transform: translateX(3px);
+                background-color: rgba(0, 255, 255, 0.1);
+            }
+            50% {
+                transform: translateX(-2px);
+                background-color: rgba(255, 20, 147, 0.3);
+            }
+            60% {
+                transform: translateX(2px);
+                background-color: rgba(255, 20, 147, 0.2);
+            }
+            70% {
+                transform: translateX(-4px);
+                background-color: rgba(0, 255, 255, 0.15);
+            }
+            80% {
+                transform: translateX(4px);
+                background-color: rgba(255, 20, 147, 0.3);
+            }
+            90% {
+                transform: translateX(-3px);
+                background-color: rgba(255, 20, 147, 0.25);
+            }
+        }
+
+        @keyframes page-flip {
+            0% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: rotateY(90deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes flame-rise {
+            0% {
+                transform: translateY(0) scaleY(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scaleY(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes burn-curl {
+            0% {
+                transform: rotateY(0deg) rotateZ(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: rotateY(25deg) rotateZ(-5deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotateY(60deg) rotateZ(-15deg) translateX(50px) translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes glitter-stamp {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-30deg);
+            }
+            50% {
+                opacity: 1;
+                filter: drop-shadow(0 0 20px #ffe16d);
+            }
+            100% {
+                opacity: 0.3;
+                transform: scale(1.2) rotate(10deg);
+            }
+        }
+
+        @keyframes ash-fade {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(50px) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes toast-slide {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* Access Screen */
+        #accessScreen {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #131313 0%, #1f1f1f 50%, #131313 100%);
+            gap: 40px;
+            overflow: hidden;
+        }
+
+        .lock-icon {
+            width: 120px;
+            height: 120px;
+            border: 4px solid var(--primary);
+            border-radius: 8px;
+            position: relative;
+            animation: lock-open 2s ease-in-out infinite;
+        }
+
+        .lock-icon::before {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            top: -30%;
+            left: 20%;
+        }
+
+        .lock-icon::after {
+            content: '';
+            position: absolute;
+            width: 20%;
+            height: 40%;
+            background: var(--primary);
+            top: 45%;
+            left: 40%;
+            border-radius: 2px;
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, var(--tertiary-fixed) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .code-input-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .code-box {
+            width: 60px;
+            height: 60px;
+            background: var(--surface-container);
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            color: var(--primary);
+            font-family: 'Space Grotesk', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .code-box:focus {
+            outline: none;
+            border-color: var(--tertiary-fixed);
+            box-shadow: 0 0 20px rgba(255, 225, 109, 0.5);
+            background: var(--surface-container-high);
+        }
+
+        .code-box.error {
+            animation: glitch-tear 0.4s ease;
+            border-color: var(--error);
+        }
+
+        .error-message {
+            color: var(--primary);
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 20px;
+            text-align: center;
+            min-height: 30px;
+            text-transform: lowercase;
+            opacity: 0;
+        }
+
+        .error-message.show {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Main Content */
+        #mainContent {
+            padding-top: 80px;
+            padding-bottom: 60px;
+            padding-left: 32px;
+            padding-right: 32px;
+            min-height: 100vh;
+            display: none;
+        }
+
+        #mainContent.active {
+            display: block;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 32px;
+            background: rgba(19, 19, 19, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--outline-variant);
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            font-style: italic;
+            color: var(--primary);
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+            letter-spacing: -0.04em;
+        }
+
+        header .icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .header-icon {
+            color: var(--primary);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-size: 28px;
+        }
+
+        .header-icon:hover {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--outline-variant);
+            position: relative;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--on-surface-variant);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            font-family: 'Epilogue', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            animation: page-flip 0.4s ease;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* Home Screen */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: page-flip 0.4s ease;
+        }
+
+        /* Add Target Form */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--surface-container);
+            border: 2px solid var(--outline-variant);
+            border-radius: 4px;
+            color: var(--on-surface);
+            font-family: 'Spline Sans', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--on-surface-variant);
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 176, 208, 0.3);
+            background: var(--surface-container-high);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Polaroid Preview */
+        .polaroid-preview {
+            display: none;
+            width: 250px;
+            background: white;
+            padding: 12px;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            margin: 24px auto;
+            transform: rotate(-3deg);
+            transition: transform 0.3s ease;
+        }
+
+        .polaroid-preview:hover {
+            transform: rotate(-1deg);
+        }
+
+        .polaroid-preview img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid-text {
+            font-family: 'Homemade Apple', cursive;
+            font-size: 16px;
+            color: #2a2a2a;
+            text-align: center;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        /* File Upload */
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload label {
+            display: block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: #131313;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        .file-upload label:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 176, 208, 0.5);
+        }
+
+        .file-name {
+            font-family: 'Shadows Into Light', cursive;
+            color: var(--on-surface-variant);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #131313;
+            box-shadow: 4px 4px 0px var(--outline-variant);
+        }
+
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--outline-variant);
+        }
+
+        .btn-secondary {
+            background: var(--outline-variant);
+            color: var(--on-surface);
+        }
+
+        .btn-danger {
+            background: var(--error-container);
+            color: var(--on-surface);
+        }
+
+        /* Victims Grid - Pinterest Style */
+        .victims-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+            padding: 20px 0;
+        }
+
+        .polaroid-card {
+            background: white;
+            padding: 12px;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .polaroid-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 176, 208, 0.4);
+        }
+
+        .polaroid-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid-card-text {
+            font-family: 'Homemade Apple', cursive;
+            font-size: 14px;
+            color: #2a2a2a;
+            text-align: center;
+            margin-top: 12px;
+            font-weight: bold;
+            word-break: break-word;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state-text {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 20px;
+            color: var(--on-surface-variant);
+        }
+
+        /* Hot Takes - Sticky Notes */
+        .sticky-notes-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 28px;
+            padding: 32px 0;
+            min-height: 400px;
+        }
+
+        .sticky-note {
+            padding: 32px 24px;
+            min-height: 240px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.6), 0 8px 20px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            position: relative;
+            overflow: visible;
+            border-radius: 3px;
+            transform: rotate(-2deg);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .sticky-note:hover {
+            transform: rotate(1deg) scale(1.08) translateY(-4px);
+            box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.7), 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Doodle Border Effect */
+        .sticky-note::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 20%;
+            width: 60px;
+            height: 16px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.08) 70%);
+            border-radius: 50%;
+            z-index: 10;
+            filter: blur(1px);
+        }
+
+        .sticky-note::after {
+            content: '✧ ✦ ✧';
+            position: absolute;
+            top: 10px;
+            right: 16px;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.3);
+            letter-spacing: 6px;
+        }
+
+        .sticky-note.yellow {
+            background: linear-gradient(135deg, #FFFDE7 0%, #FFF59D 100%);
+            color: #333;
+            border: 3px dashed rgba(0, 0, 0, 0.15);
+        }
+
+        .sticky-note.pink {
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);
+            color: #3a3a3a;
+            border: 3px dashed rgba(0, 0, 0, 0.15);
+        }
+
+        .sticky-note.green {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            color: #1b5e20;
+            border: 3px dashed rgba(0, 0, 0, 0.15);
+        }
+
+        .sticky-note.blue {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            color: #0d47a1;
+            border: 3px dashed rgba(0, 0, 0, 0.15);
+        }
+
+        .sticky-note p {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 17px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            flex-grow: 1;
+        }
+
+        .sticky-note-actions {
+            display: flex;
+            gap: 14px;
+            margin-top: 16px;
+            font-size: 18px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.15);
+            padding-top: 12px;
+        }
+
+        .sticky-note-action {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            user-select: none;
+        }
+
+        .sticky-note-action:hover {
+            transform: scale(1.3);
+        }
+
+        .add-note-input {
+            background: #FFF9C4;
+            color: #333;
+            padding: 24px;
+            border: none;
+            border-radius: 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 16px;
+            resize: none;
+            min-height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .add-note-input::placeholder {
+            color: #aaa;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface-container);
+            border: 3px solid var(--primary);
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-header {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .modal-subtext {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 18px;
+            color: var(--on-surface-variant);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-buttons .btn {
+            flex: 1;
+        }
+
+        /* Burn Screen */
+        #burnScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #burnScreen.active {
+            display: flex;
+        }
+
+        #burnContent {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        #burnText {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffcc00 0%, #ff6600 50%, #cc3300 100%);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+            font-family: 'Lib Baskerville', serif;
+            font-size: 18px;
+            box-shadow: inset 0 0 50px rgba(255, 100, 0, 0.5);
+            animation: burn-curl 2.5s ease-in forwards;
+        }
+
+        .ash-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #666;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: ash-fade 2s ease-out forwards;
+        }
+
+        .flame {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(to top, #ff4400, #ffcc00, transparent);
+            border-radius: 50% 50% 0 0;
+            filter: blur(3px);
+            animation: flame-rise 1.5s ease-in infinite;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #131313;
+            padding: 16px 32px;
+            border-radius: 4px;
+            font-weight: 600;
+            z-index: 999;
+            animation: toast-slide 3s ease forwards;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Logout Screen */
+        #logoutScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #131313 0%, #2a2a2a 50%, #131313 100%);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        #logoutScreen.active {
+            display: flex;
+        }
+
+        .logout-message {
+            font-family: 'EB Garamond', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .logout-icon {
+            font-size: 80px;
+            animation: sparkle-burst 2s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            #mainContent {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .victims-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 16px;
+            }
+
+            .sticky-notes-wall {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 16px;
+            }
+
+            .modal-content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ACCESS SCREEN (Frame 1) -->
+    <div id="accessScreen" class="screen active">
+        <div class="lock-icon">
+            <div class="sparkles" id="sparkles"></div>
+        </div>
+        
+        <div>
+            <h1 class="headline-xl" style="text-align: center; color: var(--primary); margin-bottom: 20px;">BURN BOOK</h1>
+            <p class="handwritten" style="text-align: center; font-size: 18px; color: var(--on-surface-variant);">access restricted — enter code</p>
+        </div>
+
+        <div class="code-input-group">
+            <input type="password" class="code-box" maxlength="1" inputmode="numeric">
+            <input type="password" class="code-box" maxlength="1" inputmode="numeric">
+            <input type="password" class="code-box" maxlength="1" inputmode="numeric">
+            <input type="password" class="code-box" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="error-message" id="errorMsg"></div>
+    </div>
+
+    <!-- MAIN CONTENT (Frames 2-6) -->
+    <div id="mainContent">
+        <!-- Header -->
+        <header>
+            <h1>BURN BOOK</h1>
+            <div class="icons">
+                <span class="header-icon material-symbols-outlined" id="logoutBtn">lock_open</span>
+                <span class="header-icon material-symbols-outlined">auto_awesome</span>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="home">Home</button>
+            <button class="tab-btn" data-tab="add">Add Target</button>
+            <button class="tab-btn" data-tab="victims">Victims Grid</button>
+            <button class="tab-btn" data-tab="hotTakes">Hot Takes</button>
+        </div>
+
+        <!-- HOME PAGE (Frame 2) -->
+        <div id="homePage" class="page active">
+            <h2 class="headline-md" style="color: var(--primary); margin-bottom: 24px;">Welcome Back, Queen of Rage</h2>
+            <div class="handwritten" style="font-size: 20px; line-height: 1.8; color: var(--on-surface-variant);">
+                <p style="margin-bottom: 20px;">this is YOUR secret diary. here you can:</p>
+                <p style="margin-bottom: 12px;">✨ <strong>Add new targets</strong> and spill the tea</p>
+                <p style="margin-bottom: 12px;">🔥 <strong>View your victims</strong> in the grid</p>
+                <p style="margin-bottom: 12px;">💬 <strong>Share hot takes</strong> with the world</p>
+                <p style="margin-bottom: 12px;">🔐 <strong>All data is private</strong> — stays on your device</p>
+                <p style="margin-top: 30px; font-size: 16px;">ready to cause some chaos?</p>
+            </div>
+        </div>
+
+        <!-- ADD TARGET PAGE (Frame 3) -->
+        <div id="addPage" class="page">
+            <h2 class="headline-md" style="color: var(--primary); margin-bottom: 32px;">Add New Target</h2>
+            
+            <form id="addTargetForm">
+                <div class="form-group">
+                    <label>Topic Name</label>
+                    <input type="text" id="topicInput" placeholder="what's this about..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Target Name</label>
+                    <input type="text" id="targetInput" placeholder="who are we roasting..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description/Tea Spill</label>
+                    <textarea id="descriptionInput" placeholder="spill the tea…" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Hashtags</label>
+                    <input type="text" id="hashtagsInput" placeholder="#messy #iconic #unhinged">
+                </div>
+
+                <div class="form-group">
+                    <label>Profile Image</label>
+                    <div class="file-upload">
+                        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/gif">
+                        <label for="imageInput">Upload Image (JPG, PNG, GIF — max 3MB)</label>
+                    </div>
+                    <div class="file-name" id="fileName"></div>
+                </div>
+
+                <!-- Polaroid Preview -->
+                <div class="polaroid-preview" id="polaroidPreview" style="display: none;">
+                    <img id="previewImage" src="" alt="Preview">
+                    <div class="polaroid-text" id="previewText">photo</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 24px;">Seal & Save</button>
+            </form>
+        </div>
+
+        <!-- VICTIMS GRID PAGE (Frame 4) -->
+        <div id="victimsPage" class="page">
+            <h2 class="headline-md" style="color: var(--primary); margin-bottom: 32px;">Victims Grid</h2>
+            <div class="victims-grid" id="victimsGrid">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📌</div>
+                    <div class="empty-state-text">no victims yet... go spill some tea!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOT TAKES PAGE (Frame 6) -->
+        <div id="hotTakesPage" class="page">
+            <h2 class="headline-md" style="color: var(--primary); margin-bottom: 32px;">Hot Takes</h2>
+            
+            <div style="margin-bottom: 24px;">
+                <textarea id="newNoteInput" class="add-note-input" placeholder="drop your rage…"></textarea>
+                <button id="addNoteBtn" class="btn btn-primary" style="width: 100%;">Post Note</button>
+            </div>
+
+            <div class="sticky-notes-wall" id="notesWall">
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <div class="empty-state-icon">📝</div>
+                    <div class="empty-state-text">no hot takes yet... share your thoughts!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VAULT CODE MODAL (for accessing victims) -->
+    <div id="vaultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Enter Code</div>
+            <div class="modal-subtext">prove your access</div>
+            
+            <div class="code-input-group">
+                <input type="password" class="code-box vault-code-input" maxlength="1" inputmode="numeric">
+                <input type="password" class="code-box vault-code-input" maxlength="1" inputmode="numeric">
+                <input type="password" class="code-box vault-code-input" maxlength="1" inputmode="numeric">
+                <input type="password" class="code-box vault-code-input" maxlength="1" inputmode="numeric">
+            </div>
+
+            <div class="error-message" id="vaultError" style="margin-top: 16px;"></div>
+
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" id="cancelVaultBtn">Cancel</button>
+                <button class="btn btn-primary" id="submitVaultBtn">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTIONS MODAL (Edit/Burn/View) -->
+    <div id="actionsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">What'll It Be?</div>
+            
+            <div class="modal-buttons" style="flex-direction: column; gap: 16px;">
+                <button class="btn btn-primary" id="viewBtn">View</button>
+                <button class="btn btn-primary" id="editBtn">Edit</button>
+                <button class="btn btn-danger" id="burnBtn">Burn 🔥</button>
+                <button class="btn btn-secondary" id="cancelActionBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW MODAL (Diary Entry) -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header" id="viewModalTitle"></div>
+            
+            <div style="margin: 24px 0; padding: 20px; background: var(--surface-container-high); border-left: 4px solid var(--primary); border-radius: 4px;">
+                <div style="margin-bottom: 16px;">
+                    <span style="color: var(--on-surface-variant); font-size: 14px;">Target:</span>
+                    <p id="viewModalTarget" style="font-size: 20px; color: var(--primary); font-weight: 600; margin-top: 4px;"></p>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <span style="color: var(--on-surface-variant); font-size: 14px;">Description:</span>
+                    <p id="viewModalDescription" style="font-size: 16px; color: var(--on-surface); margin-top: 4px; line-height: 1.6; white-space: pre-wrap;"></p>
+                </div>
+                <div id="viewModalImageContainer" style="margin-bottom: 16px;">
+                    <img id="viewModalImage" style="max-width: 100%; max-height: 300px; border-radius: 4px; margin-top: 8px;">
+                </div>
+                <div>
+                    <span style="color: var(--on-surface-variant); font-size: 14px;">Hashtags:</span>
+                    <p id="viewModalHashtags" style="font-size: 14px; color: var(--tertiary); margin-top: 4px;"></p>
+                </div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" id="closeViewBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BURN ANIMATION SCREEN (Frame 5) -->
+    <div id="burnScreen">
+        <div id="burnContent">
+            <div id="burnText"></div>
+            <div class="flame" style="left: 20%; animation-delay: 0s;"></div>
+            <div class="flame" style="left: 40%; animation-delay: 0.3s;"></div>
+            <div class="flame" style="left: 60%; animation-delay: 0.6s;"></div>
+            <div class="flame" style="left: 80%; animation-delay: 0.9s;"></div>
+        </div>
+    </div>
+
+    <!-- LOGOUT SCREEN (Frame 7) -->
+    <div id="logoutScreen">
+        <div class="logout-icon">✨</div>
+        <div class="logout-message">Mischief Managed</div>
+    </div>
+
+    <script>
+        // ============================================
+        // STORAGE MANAGEMENT
+        // ============================================
+        function initStorage() {
+            if (!localStorage.getItem('burnBookTargets')) {
+                localStorage.setItem('burnBookTargets', JSON.stringify([]));
+            }
+            if (!localStorage.getItem('burnBookNotes')) {
+                localStorage.setItem('burnBookNotes', JSON.stringify([]));
+            }
+            if (!localStorage.getItem('burnBookBurned')) {
+                localStorage.setItem('burnBookBurned', '0');
+            }
+        }
+
+        function getTargets() {
+            return JSON.parse(localStorage.getItem('burnBookTargets') || '[]');
+        }
+
+        function saveTargets(targets) {
+            localStorage.setItem('burnBookTargets', JSON.stringify(targets));
+        }
+
+        function getNotes() {
+            return JSON.parse(localStorage.getItem('burnBookNotes') || '[]');
+        }
+
+        function saveNotes(notes) {
+            localStorage.setItem('burnBookNotes', JSON.stringify(notes));
+        }
+
+        function getBurnedCount() {
+            return parseInt(localStorage.getItem('burnBookBurned') || '0');
+        }
+
+        function incrementBurnedCount() {
+            const count = getBurnedCount() + 1;
+            localStorage.setItem('burnBookBurned', count.toString());
+        }
+
+        // ============================================
+        // ACCESS SCREEN - CODE ENTRY
+        // ============================================
+        const codeInputs = document.querySelectorAll('.code-box');
+        const correctCode = '1604'; // Access code (my birthday)
+        let enteredCode = '';
+
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value && /^\d$/.test(e.target.value)) {
+                    if (index < codeInputs.length - 1) {
+                        codeInputs[index + 1].focus();
+                    }
+                } else {
+                    e.target.value = '';
+                }
+
+                enteredCode = Array.from(codeInputs).map(i => i.value).join('');
+
+                if (enteredCode.length === 4) {
+                    setTimeout(() => {
+                        if (enteredCode === correctCode) {
+                            triggerLockOpen();
+                        } else {
+                            triggerGlitch();
+                        }
+                    }, 300);
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !input.value && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
+            });
+        });
+
+        function triggerLockOpen() {
+            const lockIcon = document.querySelector('.lock-icon');
+            lockIcon.style.animation = 'none';
+            
+            // Create sparkles
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animation = `sparkle-burst ${0.8 + Math.random() * 0.4}s ease-out forwards`;
+                sparkle.style.animationDelay = Math.random() * 0.2 + 's';
+                document.getElementById('sparkles').appendChild(sparkle);
+            }
+
+            setTimeout(() => {
+                document.getElementById('accessScreen').classList.remove('active');
+                document.getElementById('mainContent').classList.add('active');
+                codeInputs[0].focus();
+            }, 800);
+        }
+
+        function triggerGlitch() {
+            const accessScreen = document.getElementById('accessScreen');
+            accessScreen.style.animation = 'screen-glitch 0.6s ease';
+
+            codeInputs.forEach(input => {
+                input.classList.add('error');
+                input.value = '';
+            });
+
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = 'ugh, try harder';
+            errorMsg.classList.add('show');
+
+            setTimeout(() => {
+                accessScreen.style.animation = 'none';
+                errorMsg.classList.remove('show');
+                codeInputs[0].focus();
+            }, 600);
+        }
+
+        // ============================================
+        // TAB NAVIGATION
+        // ============================================
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const pages = document.querySelectorAll('.page');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                
+                tabBtns.forEach(b => b.classList.remove('active'));
+                pages.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                document.getElementById(tab + 'Page').classList.add('active');
+            });
+        });
+
+        // ============================================
+        // ADD TARGET FORM
+        // ============================================
+        const addForm = document.getElementById('addTargetForm');
+        const imageInput = document.getElementById('imageInput');
+        const fileNameDisplay = document.getElementById('fileName');
+        const polaroidPreview = document.getElementById('polaroidPreview');
+        const previewImage = document.getElementById('previewImage');
+        const previewText = document.getElementById('previewText');
+        let selectedImage = null;
+
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > 3 * 1024 * 1024) {
+                    fileNameDisplay.textContent = '❌ File too large (max 3MB)';
+                    return;
+                }
+
+                fileNameDisplay.textContent = '✓ ' + file.name;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    selectedImage = event.target.result;
+                    previewImage.src = selectedImage;
+                    previewText.textContent = document.getElementById('topicInput').value || 'photo';
+                    polaroidPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('topicInput').addEventListener('input', (e) => {
+            if (polaroidPreview.style.display === 'block') {
+                previewText.textContent = e.target.value || 'photo';
+            }
+        });
+
+        addForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (!selectedImage) {
+                showToast('please upload an image!');
+                return;
+            }
+
+            const target = {
+                id: Date.now(),
+                topic: document.getElementById('topicInput').value,
+                target: document.getElementById('targetInput').value,
+                description: document.getElementById('descriptionInput').value,
+                hashtags: document.getElementById('hashtagsInput').value,
+                image: selectedImage,
+                createdAt: new Date().toISOString()
+            };
+
+            const targets = getTargets();
+            targets.push(target);
+            saveTargets(targets);
+
+            // Reset form
+            addForm.reset();
+            selectedImage = null;
+            polaroidPreview.style.display = 'none';
+            fileNameDisplay.textContent = '';
+
+            // Trigger glitter stamp animation
+            const stampEl = document.createElement('div');
+            stampEl.style.position = 'fixed';
+            stampEl.style.top = '50%';
+            stampEl.style.left = '50%';
+            stampEl.style.fontSize = '120px';
+            stampEl.style.animation = 'glitter-stamp 1s ease forwards';
+            stampEl.textContent = '✨';
+            document.body.appendChild(stampEl);
+            setTimeout(() => stampEl.remove(), 1000);
+
+            showToast('sealed with glitter ✨');
+            renderVictimsGrid();
+        });
+
+        // ============================================
+        // VICTIMS GRID
+        // ============================================
+        let currentEditingId = null;
+        let currentBurningId = null;
+
+        function renderVictimsGrid() {
+            const grid = document.getElementById('victimsGrid');
+            const targets = getTargets();
+
+            if (targets.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📌</div>
+                        <div class="empty-state-text">no victims yet... go spill some tea!</div>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = targets.map(target => `
+                <div class="polaroid-card" onclick="openVaultForCard(${target.id})">
+                    <img src="${target.image}" alt="${target.topic}">
+                    <div class="polaroid-card-text">${target.topic}</div>
+                </div>
+            `).join('');
+        }
+
+        function openVaultForCard(id) {
+            currentEditingId = id;
+            document.getElementById('vaultModal').classList.add('active');
+            
+            const vaultInputs = document.querySelectorAll('.vault-code-input');
+            vaultInputs.forEach(inp => inp.value = '');
+            vaultInputs[0].focus();
+
+            vaultInputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    if (e.target.value && /^\d$/.test(e.target.value)) {
+                        if (index < vaultInputs.length - 1) {
+                            vaultInputs[index + 1].focus();
+                        }
+                    } else {
+                        e.target.value = '';
+                    }
+                });
+            });
+        }
+
+        document.getElementById('submitVaultBtn').addEventListener('click', () => {
+            const vaultInputs = document.querySelectorAll('.vault-code-input');
+            const vaultCode = Array.from(vaultInputs).map(i => i.value).join('');
+
+            if (vaultCode === correctCode) {
+                document.getElementById('vaultModal').classList.remove('active');
+                openActionsModal();
+            } else {
+                triggerVaultGlitch();
+            }
+        });
+
+        function triggerVaultGlitch() {
+            const modal = document.getElementById('vaultModal');
+            modal.style.animation = 'screen-glitch 0.6s ease';
+
+            const vaultInputs = document.querySelectorAll('.vault-code-input');
+            vaultInputs.forEach(input => {
+                input.classList.add('error');
+                input.value = '';
+            });
+
+            const vaultError = document.getElementById('vaultError');
+            vaultError.textContent = 'ugh, try harder';
+            vaultError.classList.add('show');
+
+            setTimeout(() => {
+                modal.style.animation = 'none';
+                vaultError.classList.remove('show');
+                vaultInputs[0].focus();
+            }, 600);
+        }
+
+        document.getElementById('cancelVaultBtn').addEventListener('click', () => {
+            document.getElementById('vaultModal').classList.remove('active');
+            currentEditingId = null;
+        });
+
+        // ============================================
+        // ACTIONS MODAL
+        // ============================================
+        function openActionsModal() {
+            document.getElementById('actionsModal').classList.add('active');
+        }
+
+        // View Entry
+        document.getElementById('viewBtn').addEventListener('click', () => {
+            const targets = getTargets();
+            const target = targets.find(t => t.id === currentEditingId);
+            
+            if (target) {
+                document.getElementById('viewModalTitle').textContent = target.topic;
+                document.getElementById('viewModalTarget').textContent = target.target;
+                document.getElementById('viewModalDescription').textContent = target.description;
+                document.getElementById('viewModalHashtags').textContent = target.hashtags || 'none';
+                
+                const imgContainer = document.getElementById('viewModalImageContainer');
+                if (target.image) {
+                    document.getElementById('viewModalImage').src = target.image;
+                    imgContainer.style.display = 'block';
+                } else {
+                    imgContainer.style.display = 'none';
+                }
+                
+                document.getElementById('actionsModal').classList.remove('active');
+                document.getElementById('viewModal').classList.add('active');
+            }
+        });
+
+        document.getElementById('closeViewBtn').addEventListener('click', () => {
+            document.getElementById('viewModal').classList.remove('active');
+        });
+
+        document.getElementById('editBtn').addEventListener('click', () => {
+            const targets = getTargets();
+            const target = targets.find(t => t.id === currentEditingId);
+            
+            if (target) {
+                document.getElementById('topicInput').value = target.topic;
+                document.getElementById('targetInput').value = target.target;
+                document.getElementById('descriptionInput').value = target.description;
+                document.getElementById('hashtagsInput').value = target.hashtags;
+                previewImage.src = target.image;
+                previewText.textContent = target.topic;
+                polaroidPreview.style.display = 'block';
+                selectedImage = target.image;
+
+                document.getElementById('actionsModal').classList.remove('active');
+                
+                tabBtns.forEach(b => b.classList.remove('active'));
+                pages.forEach(p => p.classList.remove('active'));
+                document.querySelector('[data-tab="add"]').classList.add('active');
+                document.getElementById('addPage').classList.add('active');
+
+                // Remove old entry
+                let newTargets = targets.filter(t => t.id !== currentEditingId);
+                saveTargets(newTargets);
+                renderVictimsGrid();
+            }
+        });
+
+        document.getElementById('burnBtn').addEventListener('click', () => {
+            const targets = getTargets();
+            const target = targets.find(t => t.id === currentEditingId);
+            
+            if (target) {
+                currentBurningId = currentEditingId;
+                document.getElementById('actionsModal').classList.remove('active');
+                startBurnAnimation(target);
+            }
+        });
+
+        document.getElementById('cancelActionBtn').addEventListener('click', () => {
+            document.getElementById('actionsModal').classList.remove('active');
+            currentEditingId = null;
+        });
+
+        // ============================================
+        // BURN ANIMATION
+        // ============================================
+        function startBurnAnimation(target) {
+            const burnScreen = document.getElementById('burnScreen');
+            const burnText = document.getElementById('burnText');
+            
+            burnText.innerHTML = `
+                <strong>${target.target}</strong><br>
+                ${target.description}
+            `;
+            
+            burnScreen.classList.add('active');
+
+            const burnContent = document.getElementById('burnContent');
+            for (let i = 0; i < 50; i++) {
+                const ash = document.createElement('div');
+                ash.className = 'ash-particle';
+                ash.style.left = Math.random() * 100 + '%';
+                ash.style.top = Math.random() * 100 + '%';
+                ash.style.animation = `ash-fade ${1.5 + Math.random() * 1}s ease-out forwards`;
+                ash.style.animationDelay = Math.random() * 0.5 + 's';
+                burnContent.appendChild(ash);
+            }
+
+            setTimeout(() => {
+                let targets = getTargets();
+                targets = targets.filter(t => t.id !== currentBurningId);
+                saveTargets(targets);
+                incrementBurnedCount();
+
+                burnScreen.classList.remove('active');
+                showToast('gone in flames, babe 🔥');
+                renderVictimsGrid();
+                currentBurningId = null;
+
+                // Clear burn screen for next time
+                document.querySelectorAll('.ash-particle').forEach(ash => ash.remove());
+            }, 2500);
+        }
+
+        // ============================================
+        // HOT TAKES
+        // ============================================
+        const addNoteBtn = document.getElementById('addNoteBtn');
+        const newNoteInput = document.getElementById('newNoteInput');
+
+        addNoteBtn.addEventListener('click', () => {
+            const text = newNoteInput.value.trim();
+            
+            if (text) {
+                const notes = getNotes();
+                const note = {
+                    id: Date.now(),
+                    text: text,
+                    color: ['yellow', 'pink', 'green', 'blue'][Math.floor(Math.random() * 4)]
+                };
+                notes.push(note);
+                saveNotes(notes);
+                newNoteInput.value = '';
+                renderNotesWall();
+                showToast('posted! 📌');
+            }
+        });
+
+        newNoteInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                addNoteBtn.click();
+            }
+        });
+
+        function renderNotesWall() {
+            const wall = document.getElementById('notesWall');
+            const notes = getNotes();
+
+            if (notes.length === 0) {
+                wall.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📝</div>
+                        <div class="empty-state-text">no hot takes yet... share your thoughts!</div>
+                    </div>
+                `;
+                return;
+            }
+
+            wall.innerHTML = notes.map(note => `
+                <div class="sticky-note ${note.color}">
+                    <p>${note.text}</p>
+                    <div class="sticky-note-actions">
+                        <span class="sticky-note-action" onclick="likeNote(event)" title="like">❤️</span>
+                        <span class="sticky-note-action" onclick="deleteNote(${note.id})" title="delete" style="color: #999;">✕</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteNote(id) {
+            let notes = getNotes();
+            notes = notes.filter(n => n.id !== id);
+            saveNotes(notes);
+            renderNotesWall();
+            showToast('note deleted');
+        }
+
+        function likeNote(event) {
+            event.target.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                event.target.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // ============================================
+        // LOGOUT
+        // ============================================
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            document.getElementById('mainContent').classList.remove('active');
+            document.getElementById('logoutScreen').classList.add('active');
+
+            setTimeout(() => {
+                document.getElementById('logoutScreen').classList.remove('active');
+                document.getElementById('accessScreen').classList.add('active');
+                
+                codeInputs.forEach(input => input.value = '');
+                codeInputs[0].focus();
+                
+                addForm.reset();
+                selectedImage = null;
+                polaroidPreview.style.display = 'none';
+                fileNameDisplay.textContent = '';
+            }, 3000);
+        });
+
+        // ============================================
+        // TOAST
+        // ============================================
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        initStorage();
+        renderVictimsGrid();
+        renderNotesWall();
+        codeInputs[0].focus();
+    </script>
+</body>
+</html>
