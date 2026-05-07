@@ -4,6 +4,8 @@ A secretive digital diary for your rage. Add targets, add hot takes, and watch t
 
 **Features:** Add targets with notes & images | Victims grid | Hot takes wall | Burn animation | Edit & delete | Local storage
 
+**[Live Demo Link](https://helloiamsuchi.github.io/RantVault/)**
+
 ## Features at a Glance
 
 | Feature | Status |
